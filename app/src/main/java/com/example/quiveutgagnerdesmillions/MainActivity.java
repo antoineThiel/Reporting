@@ -69,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +79,14 @@ public class MainActivity extends AppCompatActivity {
                 Intent i = new Intent(MainActivity.this, Game.class);
                 startActivity(i);
                 finish();
+            }
+        });
+
+        btn_add.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                throw new RuntimeException("La fonctionnalité n'a pas encore été créée !");
             }
         });
     }
