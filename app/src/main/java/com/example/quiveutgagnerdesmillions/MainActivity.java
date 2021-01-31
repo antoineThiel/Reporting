@@ -6,15 +6,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.List;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class MainActivity<FireBaseAnalytics> extends AppCompatActivity {
     private Button btn_start, btn_add, btn_class,btn_about,btn_quit;
 
     public static int score = 0;
@@ -26,11 +25,17 @@ public class MainActivity extends AppCompatActivity {
             "Ecole Superieure Genie Informatique");
     public static Question q3 = new Question("What is the name of this app creator ?","Luis","Pierre",
             "Miyuki","Ivan");
+    FirebaseAnalytics mfba = FirebaseAnalytics.getInstance(this);
+
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
 
         btn_start = findViewById(R.id.btn_start);
         btn_add = findViewById(R.id.btn_add);
