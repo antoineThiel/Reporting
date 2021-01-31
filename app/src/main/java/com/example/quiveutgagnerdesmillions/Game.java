@@ -9,11 +9,14 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.TextView;
+
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.Random;
 
@@ -24,6 +27,8 @@ public class Game extends AppCompatActivity {
     private Chronometer timer;
     private TextView question;
     private Button back_to, answer1, answer2, answer3, answerTrue;
+    private FirebaseAnalytics mFirebaseAnalytics;
+
     //
     int i;
 
@@ -36,6 +41,10 @@ public class Game extends AppCompatActivity {
         timer = findViewById(R.id.chrono);
         question = findViewById(R.id.q);
         back_to = findViewById(R.id.back_to_menu_warning);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        mFirebaseAnalytics.setUserProperty("Player", "Antho");
+        mFirebaseAnalytics.setUserProperty("Player", "Antoine");
+
 
 
         Random r = new Random();
@@ -159,6 +168,12 @@ public class Game extends AppCompatActivity {
         answer1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "R1");
+                bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "reponse1");
+                bundle.putString("reponse","reponse1");
+                bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "reponse");
+                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
                 answer1.setTextColor(Color.RED);
                 Intent i = new Intent(Game.this, Gameover.class);
                 startActivity(i);
@@ -168,6 +183,12 @@ public class Game extends AppCompatActivity {
         answer2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle response2Bundle = new Bundle();
+                response2Bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "R2");
+                response2Bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "reponse2");
+                response2Bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, "reponse");
+                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, response2Bundle);
+
                 answer2.setTextColor(Color.RED);
                 Intent i = new Intent(Game.this, Gameover.class);
                 startActivity(i);
@@ -177,6 +198,11 @@ public class Game extends AppCompatActivity {
         answer3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle response3Bundle = new Bundle();
+                response3Bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "R3");
+                response3Bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "reponse3");
+                response3Bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, "reponse");
+                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, response3Bundle);
                 answer3.setTextColor(Color.RED);
                 Intent i = new Intent(Game.this, Gameover.class);
                 startActivity(i);
@@ -186,6 +212,12 @@ public class Game extends AppCompatActivity {
         answerTrue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle responseTrueBundle = new Bundle();
+                responseTrueBundle.putString(FirebaseAnalytics.Param.ITEM_ID, "RTRUE");
+                responseTrueBundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "reponse_true");
+                responseTrueBundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, "reponse");
+                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, responseTrueBundle);
+
                 answerTrue.setTextColor(Color.GREEN);
                 if(!MainActivity.questions.isEmpty()) {
                     //retirer la question en cours

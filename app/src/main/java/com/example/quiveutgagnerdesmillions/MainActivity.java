@@ -25,7 +25,7 @@ public class MainActivity<FireBaseAnalytics> extends AppCompatActivity {
             "Ecole Superieure Genie Informatique");
     public static Question q3 = new Question("What is the name of this app creator ?","Luis","Pierre",
             "Miyuki","Ivan");
-    FirebaseAnalytics mfba = FirebaseAnalytics.getInstance(this);
+    private FirebaseAnalytics mfba;
 
     
 
@@ -33,6 +33,7 @@ public class MainActivity<FireBaseAnalytics> extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    mfba = FirebaseAnalytics.getInstance(this);
 
 
 
@@ -77,6 +78,12 @@ public class MainActivity<FireBaseAnalytics> extends AppCompatActivity {
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "S1");
+                bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "start_btn");
+                bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "start");
+                mfba.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+
                 questions.clear();
                 questions.add(q1);
                 questions.add(q2);
