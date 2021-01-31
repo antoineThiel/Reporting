@@ -171,7 +171,6 @@ public class Game extends AppCompatActivity {
                 Bundle bundle = new Bundle();
                 bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "R1");
                 bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "reponse1");
-                bundle.putString("reponse","reponse1");
                 bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "reponse");
                 mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
                 answer1.setTextColor(Color.RED);
